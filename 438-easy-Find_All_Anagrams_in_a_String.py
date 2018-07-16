@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 class Solution:
     def findAnagrams(self, s, p):
         """
@@ -13,13 +15,10 @@ class Solution:
         # If we find a match charactor, the value of corresponding key-value pair in dp would decrease by 1.
         # If after len(p) steps, all the values in dp are 0, put corresponding index of s in result.
 
-        dp = {}
+        dp = defaultdict(int)
 
         for i in range(len(p)) :
-            dp[p[i]] = int(0)
-
-        for i in range(len(p)) :
-            dp[p[i]] += 1
+            dp[p[i]] = int(dp[p[i]]) + 1
 
         results = []
 
@@ -38,7 +37,6 @@ class Solution:
 
                 if t - j == len(p): # successfully cross len(p) charactors
                     results.append(j)
-
 
         return results
 
