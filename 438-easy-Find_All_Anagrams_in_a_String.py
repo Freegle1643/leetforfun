@@ -1,3 +1,5 @@
+# 34/36 Passed, 2 Timeout TBC
+
 from collections import defaultdict
 
 class Solution:
