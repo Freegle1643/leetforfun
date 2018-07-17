@@ -1,4 +1,30 @@
-# 34/36 Passed, 2 Timeout TBC
+"""
+438. Find All Anagrams in a String
+
+Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
+
+Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+
+The order of output does not matter.
+
+Ex.1
+
+Input:
+s: "cbaebabacd" p: "abc"
+
+Output:
+[0, 6]
+
+Note:
+
+1. Pattern contains duplicate charactor
+2. Copy but not edit the original object in Python
+3. Initialize fixed size dict/set etc. (TBC)
+
+"""
+
+# Result: Timeout
+# 34/36 Passed, 2/36 Timeout TBC
 
 from collections import defaultdict
 
