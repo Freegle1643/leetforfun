@@ -16,7 +16,7 @@ Output:
 
 Note:
 1. The so called reconstruct is to output any order that makes sense.
-2. This discussion explains thing perfectly. https://leetcode.com/problems/queue-reconstruction-by-height/discuss/89345/Easy-concept-with-PythonC++Java-Solution
+2. This discussion explains thing perfectly. It illustrate divide and conqure. https://leetcode.com/problems/queue-reconstruction-by-height/discuss/89345/Easy-concept-with-PythonC++Java-Solution
 
 
 """
