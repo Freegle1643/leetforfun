@@ -13,6 +13,8 @@ Note:
 	More on https://dbader.org/blog/difference-between-is-and-equals-in-python
 """
 
+# Results AC 48ms 93.55%
+
 # Definition for singly-linked list.
 class ListNode(object):
     def __init__(self, x):

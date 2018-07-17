@@ -29,6 +29,8 @@ Note:
 4. What we add is that we put slow and fast to [MeetPoint] and [Head], let them run at SAME pace. When they meet, fast covered x and slow covered z, which is equal to x. The LinkNode would be the entry of circle.
 """
 
+# Result: AC 52ms 90.77%
+
 class ListNode(object):
     def __init__(self, x):
         self.val = x
