@@ -8,8 +8,9 @@ Can you solve it without using extra space?
 
 Note:
 1. If two runner running at different constant speed on a circle track, they will eventually meet each other.
-2. See more on https://leetcode.com/problems/linked-list-cycle/solution/
-
+	See more on https://leetcode.com/problems/linked-list-cycle/solution/
+2. Line 31 'if slow is fast:' DO NOT USE '=='. Since if two different LinkNode have the same value, such condition would lead to a wrong decision.
+	More on https://dbader.org/blog/difference-between-is-and-equals-in-python
 """
 
 # Definition for singly-linked list.
