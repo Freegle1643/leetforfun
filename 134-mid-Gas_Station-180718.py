@@ -68,6 +68,7 @@ The trick is to pick the station right after the most difficult time. Then your 
 
 # Result: AC 44ms 26.87% 
 # Even using this trick, 26.87% is still so low
+# The leading part of the solution also implement such thoughts, but with a faster code
 
 class Solution:
     def canCompleteCircuit(self, gas, cost):
