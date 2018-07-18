@@ -52,6 +52,7 @@ Thoughts:
 2. If there are elements in gap list that are negative, those gas station could not be start point.
 3. Go through those non-negative gas station, emulate the whole process. Print the first gas station i that fits.(According to the question, only one solution is match. So first is the only one.)
 4. *Pay attention to foot index of gap list, since we go through the list in CIRCULAR manner.
+! No matter apply which one of the solution below, timeout would rise up when large input.
 
 Improved Thoughts:
 
@@ -61,13 +62,9 @@ So how do you pick where to start?
 First, each station will either give you a gas surplus (if it requires less gas to go to the next station than it has at the station), or a gas deficit (if it's the other way around). 
 So your total gas supply either rises or shrinks as you pass through each station (draw a curve yourself. It will look like a movement of a stock). 
 The most difficult part of the trip is when your gas supply continues to shrink. Now assume your gas can go negative, and you have to start from station 0, the most difficult time is when your gas supply is the lowest (most negative). 
-The trick is to pick the station right after the most difficult time. Then your gas always stays positive!
-
+T
 
 """
-
-# Result: AC 44ms 26.87% 
-# Even using this trick, 26.87% is still so low
 
 class Solution:
     def canCompleteCircuit(self, gas, cost):
@@ -76,13 +73,49 @@ class Solution:
         :type cost: List[int]
         :rtype: int
         """
-        if sum(gas) < sum(cost):
-            return -1
+        gap = []
+        n = len(gas)
+        for i in range(n):
+        	gap.append(gas[i] - cost[i])
+        if sum(gap) < 0:
+        	return -1
+
+        # print(gas,cost,gap)
+
+        # If have not return, there exist a solution
+
         tank = 0
-        min_gas, min_gas_loc = 0, None
-        for i in range(len(gas)):
-            tank += gas[i] - cost[i]
-            if tank < min_gas:
-                min_gas = tank
-                min_gas_loc = i
-        return 0 if min_gas_loc is None else (min_gas_loc + 1) % len(gas)
+        for i in range(n):
+        	if gap[i] >= 0:
+
+                # Solution 1
+
+        		# start = i
+        		# tank = gap[i]
+        		# idx = start
+        		# while tank >= 0:
+        		# 	idx = (idx + 1) % n
+        		# 	tank += gap[idx]
+        		# 	if idx == start:
+        		# 		return start
+
+                # Solution 2
+
+        		# tank = gas[i]
+        		# for j in range(n):        
+        		# 	tank = tank + gap[(i+1)%n]
+        		# 	# print('i:'+str(i)+' j:'+str(j)+' t'+str(tank))
+        		# 	if tank < 0:
+        		# 		break
+        		# 	if tank >= 0 and j == n-1:
+        		# 		return i
+
+if __name__ == '__main__':
+    from time import time
+
+    sol = Solution()
+    t = time()
+    # ans = sol.canCompleteCircuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])
+    # ans = sol.canCompleteCircuit([5,1,2,3,4], [4,4,1,5,1])
+    ans = sol.canCompleteCircuit([1,2,3,3], [2,1,5,1])     
+    print('ans: %s\ntime: %.3fms' % (ans, ((time() - t)) * 1000))
