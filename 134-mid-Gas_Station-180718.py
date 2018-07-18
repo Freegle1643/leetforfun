@@ -69,6 +69,8 @@ The trick is to pick the station right after the most difficult time. Then your 
 # Result: AC 44ms 26.87% 
 # Even using this trick, 26.87% is still so low
 # The leading part of the solution also implement such thoughts, but with a faster code
+# Implemented the leading part
+# Result: AC 
 
 class Solution:
     def canCompleteCircuit(self, gas, cost):
@@ -77,13 +79,11 @@ class Solution:
         :type cost: List[int]
         :rtype: int
         """
-        if sum(gas) < sum(cost):
-            return -1
-        tank = 0
-        min_gas, min_gas_loc = 0, None
-        for i in range(len(gas)):
-            tank += gas[i] - cost[i]
-            if tank < min_gas:
-                min_gas = tank
-                min_gas_loc = i
-        return 0 if min_gas_loc is None else (min_gas_loc + 1) % len(gas)
+        gap = [gas[i] - cost[i] for i in range(len(gas))]
+        for i in range(1, len(gap)): 
+            gap[i] += gap[i - 1]
+        if gap[-1] < 0: return -1
+        if gap.index(min(gap)) < len(gap) - 1: 
+            return gap.index(min(gap)) + 1
+        else: 
+            return 0
