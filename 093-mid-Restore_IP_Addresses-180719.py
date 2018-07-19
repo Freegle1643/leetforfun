@@ -41,7 +41,7 @@ class Solution:
             return result
         
         
-        for i in range(4):
+        for i in range(1,4):
                 subi = s[:i]
                 if isPartValid(subi):
                     for j in range(i, i+4):
@@ -64,5 +64,5 @@ if __name__ == '__main__':
 
     sol = Solution()
     t = time()
-    ans = sol.restoreIpAddresses('111111')     
+    ans = sol.restoreIpAddresses('25525511135')     
     print('ans: %s\ntime: %.3fms' % (ans, ((time() - t)) * 1000))        
