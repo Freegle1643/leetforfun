@@ -22,6 +22,8 @@ return its level order traversal as:
 
 """
 
+# Result: AC 40ms 100 %
+
 from collections import defaultdict
 
 # Definition for a binary tree node.
