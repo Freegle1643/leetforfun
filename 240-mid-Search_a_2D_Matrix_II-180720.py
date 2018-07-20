@@ -24,6 +24,8 @@ Given target = 20, return false.
 """
 
 # Result AC 64ms 11.87%
+# Could reduce compare steps to reduce time
+# 关键是是否能知道每次比较时，是从下一行上来的还是从左边走过去的
 
 class Solution:
     def searchMatrix(self, matrix, target):

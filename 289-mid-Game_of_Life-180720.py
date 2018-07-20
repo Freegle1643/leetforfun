@@ -34,13 +34,54 @@ Could you solve it in-place? Remember that the board needs to be updated at the 
 In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches the border of the array. How would you address these problems?
 
 
+Thoughts:
+1. A) 1 -> <2 -> 0 B) 1 -> 2,3 -> 1 C) 1 -> >3 -> 0 D) 0 -> 3 -> 1
+2. If neighbors are B or D, add 10 to each value. Other live remains 1, when divided by 10, they will die and others will live.
+
 """
 
 
-class Solution:
+# Result AC 48 ms 3.98%
+# That's embarrassing
+
+
+class Solution(object):
     def gameOfLife(self, board):
-        """
-        :type board: List[List[int]]
-        :rtype: void Do not return anything, modify board in-place instead.
-        """
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            for j in range(n):
+                neighbors = self.getNeighbors(board, i, j)
+                # Currently Dead
+                if board[i][j] == 0:
+                    if neighbors == 3:
+                        board[i][j] += 10  # Dead -> Live
+                # Currently Live
+                elif neighbors == 2 or neighbors == 3:
+                	board[i][j] += 10  # Live -> Live
+
+                # Other Live cells will turns to 0 when / 10
         
+        # In-place bitwise operation
+        for i in range(m):
+            for j in range(n):
+                board[i][j] //= 10
+        return
+    
+    def getNeighbors(self, board, row, col):
+        m, n = len(board), len(board[0])
+        cnt = 0 
+        for i in [row-1, row, row+1]:
+            for j in [col-1, col, col+1]:
+                if i == row and j == col or i < 0 or j < 0 or i >= m or j >= n:
+                    continue
+                if board[i][j] % 10 == 1:
+                    cnt += 1
+        return cnt
+
+if __name__ == '__main__':
+    from time import time
+    sol = Solution()
+    t = time()
+    board = [[0,1,0], [0,0,1], [1,1,1], [0,0,0]]
+    ans = sol.gameOfLife(board)     
+    print('ans: %s\ntime: %.3fms' % (board, ((time() - t)) * 1000))          
