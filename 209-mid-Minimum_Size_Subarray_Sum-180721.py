@@ -25,7 +25,7 @@ class Solution:
         if not nums:
             return 0
 
-        min_len = 999999999999
+        min_len = int('inf')
         left = 0
         worker = 0
 
@@ -35,7 +35,7 @@ class Solution:
                 min_len = min(i - left, min_len)
                 worker -= nums[left]
                 left += 1
-        return min_len if min_len != 999999999999 else 0
+        return min_len if min_len != int('inf') else 0
 
 
 if __name__ == '__main__':

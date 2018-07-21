@@ -23,9 +23,21 @@ Input: [-1, 3, 2, 0]
 Output: True
 
 Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
+
+Credit to NoAnyLove
+
+Just as jade86, we named ai, aj, ak as s1, s2, s3.
+
+Use a stack to keep track of an increasing sequence, if a number is in the range of this increasing sequence (exclusive), then it is a valid s3. When we meet a number smaller than the top of the stack, we need to start with a new increasing sequence, and we use lo and hi to keep track of previous stacks ranges. If we can find a number within the range (lo, hi), it is also a valid s3.
+
+PS: I was trying to use a list to keep track of the ranges of all increasing equences, but got TLE for TestCase 92/95. Then I found we can merge these ranges, and make it easier and faster.
+
+For example, nums = [8, 10, 4, 6, 2, 3, 5], when we traverse to 5, we would have 3 increasing sequence [8, 10], [4, 6], [2, 3], a number falls into any of these ranges would be a valid s3. To make the comparison easy, we merge these 3 ranges to [3, 10], so we only need to check if a number is within [3, 10], and 5 is the s3 we need.
+
+
 """
 
-# Result: AC 76ms 55.86%
+# Result: AC 68ms 72.55%
 
 
 class Solution:
@@ -34,26 +46,26 @@ class Solution:
         :type nums: List[int]
         :rtype: bool
         """
-
-        if len(nums) < 3:
-            return False
-        min_nums = [nums[0]]
-        min_val = nums[0]
-        for i in range(1, len(nums)):
-            if min_val < nums[i]:
-                min_nums.append(min_val)
-            else:
-                min_nums.append(nums[i])
-                min_val = nums[i]
-        stack = [nums[-1]]
-        print(min_nums)
-        for i in range(len(nums) - 2, -1, -1):
-            if nums[i] > min_nums[i]:
-                while stack and stack[-1] <= min_nums[i]:
-                    stack.pop()
-                if stack and stack[-1] < nums[i]:
-                    return True
-                stack.append(nums[i])
+        stack = []
+        lo = float('inf')
+        hi = float('-inf')
+        for num in nums:
+            print('before', stack, lo, hi)
+            if len(stack) >= 2 and stack[0] < num < stack[-1]:
+                return True
+            
+            if lo < num < hi:
+                return True
+            
+            if stack and num < stack[-1]:
+                if len(stack) >= 2:
+                    lo = min(lo, stack[0])
+                    hi = max(hi, stack[-1])
+                stack = []
+                print('stack dumped')
+            print('after', stack, lo, hi)
+            stack.append(num)
+        
         return False
 
 
@@ -61,5 +73,5 @@ if __name__ == '__main__':
     from time import time
     sol = Solution()
     t = time()
-    ans = sol.find132pattern([-1, 3, 2, 0])
+    ans = sol.find132pattern( [8, 10, 4, 6, 2, 3, 5])
     print('ans: %s\n time: %.3fms' % (ans, (time() - t) * 1000))
