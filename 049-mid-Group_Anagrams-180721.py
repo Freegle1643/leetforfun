@@ -17,6 +17,9 @@ Note:
 All inputs will be in lowercase.
 The order of your output does not matter.
 
+
+Other method: https://leetcode.com/problems/group-anagrams/discuss/19203/2-line-Python-solution-AC-with-350ms-(some-useful-Python-tricks)
+
 """
 
 # Result: AC 124ms 83.62%
