@@ -38,6 +38,7 @@ For example, nums = [8, 10, 4, 6, 2, 3, 5], when we traverse to 5, we would have
 """
 
 # Result: AC 68ms 72.55%
+# Still didn't understand very well, TBC
 
 
 class Solution:
