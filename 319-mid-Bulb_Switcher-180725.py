@@ -62,7 +62,4 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        i=0
-        while i*i<=n:
-            i+=1
-        return i-1 
+        return int(math.sqrt(n))
