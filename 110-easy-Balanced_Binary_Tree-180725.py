@@ -34,6 +34,8 @@ Return false.
 
 """
 
+# Result 72ms 45.83%
+
 
 # Definition for a binary tree node.
 class TreeNode:
