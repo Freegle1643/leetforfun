@@ -14,7 +14,8 @@ Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 8 -> 0 -> 7
 """
 
-from collections import deque
+
+# Result AC 116ms 78.90%
 
 
 # Definition for singly-linked list.
@@ -22,7 +23,7 @@ class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
-        
+
 
 class Solution:
     def addTwoNumbers(self, l1, l2):
@@ -33,22 +34,27 @@ class Solution:
         """
 
         v1 = 0
-        d1 = l1
         v2 = 0
-        d2 = l2
         vr = 0
-        while d1.next:
-        	v1 = v1 * 10 + d1.val
-        	d1 = d1.next
-        while d2.next:
-        	v2 = v2 * 10 + d2.val
-        	d2 = d2.next
+        while l1:
+        	v1 = v1 * 10 + l1.val
+        	l1 = l1.next
+        while l2:
+        	v2 = v2 * 10 + l2.val
+        	l2 = l2.next
         vr = v1 + v2
-        str_vr = deque(str(vr))
-        res = ListNode(str_vr[0])
-        str_vr.popleft()
-        worker = res        
-        for i in range(len(str_vr)):
-        	worker.next = ListNode(str_vr.popleft())
-        	worker = worker.next
-        return res
+        
+        if vr == 0:
+        	return ListNode(0)
+
+        lgt = len(str(vr))
+        dummy = n = ListNode(0)
+        while lgt + 1:
+        	d, vr = divmod(vr, 10**lgt )
+        	n.next = ListNode(d)
+        	n = n.next
+        	lgt -= 1
+        
+        while not dummy.val:
+        	dummy = dummy.next
+        return dummy
