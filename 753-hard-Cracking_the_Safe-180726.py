@@ -24,6 +24,16 @@ k^n will be at most 4096.
 
 """
 
+
+"""
+Ref
+
+https://leetcode.com/problems/cracking-the-safe/discuss/110265/Having-trouble-understanding-it-Try-this.
+
+https://leetcode.com/problems/cracking-the-safe/discuss/110266/A-Brainstorming-Python-Solution
+
+"""
+
 # Result AC 36 ms 90.54%
 
 
@@ -44,4 +54,3 @@ class Solution(object):
                     ans += str(y)
                     break
         return ans
-    
