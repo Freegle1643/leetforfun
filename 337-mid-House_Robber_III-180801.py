@@ -23,6 +23,7 @@ Credits:
 Special thanks to @dietpepsi for adding this problem and creating all test cases.
 """
 
+"""
 from collections import defaultdict
 
 
@@ -35,10 +36,6 @@ from collections import defaultdict
 
 class Solution:
     def rob(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
         if not root:
             return 0
         
@@ -65,3 +62,31 @@ class Solution:
         		sum2 += sum(level_info[i])
 
         return max(sum1, sum2)
+
+"""
+
+"""
+God damn it! I though only level differs in 1 level are not directly connected. But 2 and more are, as well the same!
+
+https://leetcode.com/problems/house-robber-iii/discuss/79330/Step-by-step-tackling-of-the-problem
+"""        
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node):
+            if not node: return 0, 0
+            l, r = dfs(node.left), dfs(node.right)
+            return max(l) + max(r), node.val + l[0] + r[0]
+        return max(dfs(root))
