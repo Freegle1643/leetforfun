@@ -32,6 +32,7 @@ class Solution:
             return False
         for i in range(len(num) // 2):
         	# len(num) // 3 * 2 cuz there would be a third number equals to one + two
+        	# In max situation, three numbers, to construct a fib
             for j in range(i+1, len(num) // 3 * 2):
                 one = int(num[:i+1])
                 two = int(num[i+1:j+1])
