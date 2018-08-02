@@ -71,6 +71,8 @@ God damn it! I though only level differs in 1 level are not directly connected. 
 https://leetcode.com/problems/house-robber-iii/discuss/79330/Step-by-step-tackling-of-the-problem
 """        
 
+# Result AC 56ms 100%
+
 
 # Definition for a binary tree node.
 # class TreeNode:
