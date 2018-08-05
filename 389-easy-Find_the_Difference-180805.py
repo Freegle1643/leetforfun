@@ -18,6 +18,11 @@ e
 
 Explanation:
 'e' is the letter that was added.
+
+
+https://leetcode.com/problems/find-the-difference/discuss/86881/Python-solution-which-beats-96
+https://leetcode.com/problems/find-the-difference/discuss/86904/3-Different-Python-Solutions-(Dictionary-Difference-XOR)
+https://leetcode.com/problems/find-the-difference/discuss/86845/1-liners-and-2-liner-in-Python
 """
 
 
