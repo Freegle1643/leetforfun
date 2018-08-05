@@ -34,20 +34,13 @@ class Solution:
         	return [int(input)]
 
         res = []
-        print(input)
         for i in range(len(input)):
         	if input[i] in "+*-":
-        		print('input[',i,']: ',input[i])
         		res1 = self.diffWaysToCompute(input[:i])
-        		print('res1', res1)
         		res2 = self.diffWaysToCompute(input[i+1:])
-        		print('res2', res2)
         		for j in res1:
-        			print('j', j)
         			for k in res2:
-        				print('k',k)
         				res.append(self.helper(int(j), int(k), input[i]))
-        				print('res',res)
 
         return res
 
