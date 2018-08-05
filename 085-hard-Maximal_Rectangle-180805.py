@@ -14,6 +14,9 @@ Input:
 ]
 Output: 6
 
+
+https://leetcode.com/problems/maximal-rectangle/discuss/29065/AC-Python-DP-solutioin-120ms-based-on-largest-rectangle-in-histogram
+https://leetcode.com/problems/maximal-rectangle/discuss/29064/A-O(n2)-solution-based-on-Largest-Rectangle-in-Histogram
 """
 
 # Result AC 92 ms 91.95%
