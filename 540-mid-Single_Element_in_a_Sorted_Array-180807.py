@@ -16,6 +16,8 @@ O(log n): Binary Search
 
 """
 
+# Result AC 36 ms 91.86%
+
 
 class Solution:
     def singleNonDuplicate(self, nums):
