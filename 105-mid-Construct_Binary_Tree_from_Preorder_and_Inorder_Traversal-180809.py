@@ -22,7 +22,7 @@ https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-tr
    
 """
 
-# Result AC
+# Result AC 228ms 50.50%
 # TBC 
 
 
