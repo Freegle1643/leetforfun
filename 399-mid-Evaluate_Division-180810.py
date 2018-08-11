@@ -20,6 +20,9 @@ The input is always valid. You may assume that evaluating the queries will resul
 """
 
 
+# Result AC 36ms 69.69%
+# TBC
+
 
 class Solution:
     def calcEquation(self, equations, values, queries):
@@ -29,4 +32,25 @@ class Solution:
         :type queries: List[List[str]]
         :rtype: List[float]
         """
+        def dfs(start, end, path, paths):
+            if start == end and start in G:
+                paths[0] = path
+                return
+            if start in vis: 
+                return
+            vis.add(start)
+            for node in G[start]:
+                dfs(node, end, path * W[start, node], paths)
         
+        
+        G, W = collections.defaultdict(set), collections.defaultdict(float)
+        for (A, B), V in zip(equations, values):
+            G[A], G[B] = G[A] | {B}, G[B] | {A}
+            W[A, B], W[B, A] = V, 1.0 / V
+            
+        res = []
+        for X, Y in queries:
+            paths, vis = [-1.0], set()
+            dfs(X, Y, 1.0, paths)
+            res += paths[0],
+        return res

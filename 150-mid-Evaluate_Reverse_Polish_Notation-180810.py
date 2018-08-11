@@ -32,9 +32,27 @@ Explanation:
 = 17 + 5
 = 22
 
+Same idea using lambda
+
+def evalRPN(self, tokens):
+    op = {
+    '+': lambda x: lambda y: int(float(x)+float(y)),
+    '-': lambda x: lambda y: int(float(x)-float(y)),
+    '*': lambda x: lambda y: int(float(x)*float(y)),
+    '/': lambda x: lambda y: int(float(x)/float(y))
+    }
+    s = []
+    for i in tokens:
+        if i in ['+','-','*','/']:
+            [n1, n2] = s[-2:]
+            s[-2:] = [op[i](n1)(n2)]
+        else:
+            s.append(int(i))
+    return s[0]
+
 """
 
-# Result 
+# Result 48ms 51.30%
 
 
 class Solution:
@@ -50,17 +68,12 @@ class Solution:
             else:
                 r, l = stack.pop(), stack.pop()
                 if t == "+":
-                    stack.append(l+r)
+                    stack.append(int(float(l)+float(r)))
                 elif t == "-":
-                    stack.append(l-r)
+                    stack.append(int(float(l)-float(r)))
                 elif t == "*":
-                    stack.append(l*r)
+                    stack.append(int(float(l)*float(r)))
                 else:
-                    # here take care of the case like "1/-22",
-                    # in Python 2.x, it returns -1, while in 
-                    # Leetcode it should return 0
-                    if l*r < 0 and l % r != 0:
-                        stack.append(l/r+1)
-                    else:
-                        stack.append(l/r)
+                	stack.append(int(float(l)/float(r)))
+                    
         return stack.pop()
