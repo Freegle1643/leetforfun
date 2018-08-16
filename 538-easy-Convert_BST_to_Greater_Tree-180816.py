@@ -14,6 +14,10 @@ Output: The root of a Greater Tree like this:
              18
             /   \
           20     13
+
+Note:
+Key is to find the order to traverse the tree
+
 """
 
 # Result AC 92ms 89.59%
