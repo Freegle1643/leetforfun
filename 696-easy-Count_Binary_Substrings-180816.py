@@ -23,7 +23,7 @@ s.length will be between 1 and 50,000.
 s will only consist of "0" or "1" characters.	
 
 https://leetcode.com/problems/count-binary-substrings/discuss/108626/Python-intuitive-approaches-with-explanation-(3-liner)
-
+https://leetcode.com/problems/count-binary-substrings/discuss/108590/Python-Concise-Solution
 
 """
 
