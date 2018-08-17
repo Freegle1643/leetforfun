@@ -28,7 +28,9 @@ Note:
 	x >> y
 	Returns x with the bits shifted to the right by y places. This is the same as //'ing x by 2**y.
 
-
+https://leetcode.com/problems/divide-two-integers/discuss/13407/Detailed-Explained-8ms-C++-solution
+https://leetcode.com/problems/divide-two-integers/discuss/13403/Clear-python-code
+https://leetcode.com/problems/divide-two-integers/discuss/142849/C++JavaPython-Should-Not-Use-%22long%22-Int
 """
 
 # Result AC 52ms 100%
