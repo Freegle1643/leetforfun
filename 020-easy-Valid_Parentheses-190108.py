@@ -38,6 +38,7 @@ class Solution:
         :rtype: bool
         """
         stack = []
+        # Using a dictionary
         mapping = {")": "(", "]": "[", "}": "{"}
 
         for c in s:
