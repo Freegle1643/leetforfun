@@ -45,3 +45,46 @@ class Solution:
         # if we can add more right pair and there are fewer or equal left pair we have
         if right:
             self.dfs(left, right-1, ans, string + ")")
+
+"""
+DFS on code, looks simliar to backtracking
+https://leetcode.com/problems/generate-parentheses/solution/
+"""
+
+class Solution:
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        if not n:
+            return []
+        left, right, ans = 0, 0, []
+        def backtracking(left, right, ans, str):
+            if left + right == 2 * n:
+                ans.append(str)
+                return
+            if left < n:
+                backtracking(left+1, right, ans, str+"(")
+            if right < left:
+                backtracking(left, right+1, ans, str+")")
+
+        backtracking(left, right, ans, "")
+        return ans
+
+
+
+"""
+DP Solution
+https://leetcode.com/problems/generate-parentheses/discuss/10369/Clean-Python-DP-Solution
+
+class Solution(object):
+    def generateParenthesis(self, n):
+        dp = [[] for i in range(n + 1)]
+        dp[0].append('')
+        for i in range(n + 1):
+            for j in range(i):
+                dp[i] += ['(' + x + ')' + y for x in dp[j] for y in dp[i - j - 1]]
+        return dp[n]
+
+"""
