@@ -49,6 +49,11 @@ class Solution:
 """
 DFS on code, looks simliar to backtracking
 https://leetcode.com/problems/generate-parentheses/solution/
+Backtracking is an algorithmic-technique for solving problems recursively by trying to
+build a solution incrementally, one piece at a time, removing those solutions that fail to
+satisfy the constraints of the problem at any point of time (by time, here, is referred to
+the time elapsed till reaching any level of the search tree).
+https://www.geeksforgeeks.org/backtracking-algorithms/
 """
 
 class Solution:
@@ -78,6 +83,7 @@ class Solution:
 DP Solution
 https://leetcode.com/problems/generate-parentheses/discuss/10369/Clean-Python-DP-Solution
 
+"""
 class Solution(object):
     def generateParenthesis(self, n):
         dp = [[] for i in range(n + 1)]
@@ -86,5 +92,3 @@ class Solution(object):
             for j in range(i):
                 dp[i] += ['(' + x + ')' + y for x in dp[j] for y in dp[i - j - 1]]
         return dp[n]
-
-"""
