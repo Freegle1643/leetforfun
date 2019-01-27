@@ -15,7 +15,7 @@ Each element in the input arrays is a non-negative integer.
 
 Ex.1
 
-Input: 
+Input:
 gas  = [1,2,3,4,5]
 cost = [3,4,5,1,2]
 
@@ -32,7 +32,7 @@ Therefore, return 3 as the starting index.
 
 Ex.2
 
-Input: 
+Input:
 gas  = [2,3,4]
 cost = [3,4,3]
 
@@ -57,20 +57,20 @@ Improved Thoughts:
 
 Credit at ringabel
 
-So how do you pick where to start? 
-First, each station will either give you a gas surplus (if it requires less gas to go to the next station than it has at the station), or a gas deficit (if it's the other way around). 
-So your total gas supply either rises or shrinks as you pass through each station (draw a curve yourself. It will look like a movement of a stock). 
-The most difficult part of the trip is when your gas supply continues to shrink. Now assume your gas can go negative, and you have to start from station 0, the most difficult time is when your gas supply is the lowest (most negative). 
+So how do you pick where to start?
+First, each station will either give you a gas surplus (if it requires less gas to go to the next station than it has at the station), or a gas deficit (if it's the other way around).
+So your total gas supply either rises or shrinks as you pass through each station (draw a curve yourself. It will look like a movement of a stock).
+The most difficult part of the trip is when your gas supply continues to shrink. Now assume your gas can go negative, and you have to start from station 0, the most difficult time is when your gas supply is the lowest (most negative).
 The trick is to pick the station right after the most difficult time. Then your gas always stays positive!
 
 
 """
 
-# Result: AC 44ms 26.87% 
+# Result: AC 44ms 26.87%
 # Even using this trick, 26.87% is still so low
 # The leading part of the solution also implement such thoughts, but with a faster code
 # Implemented the leading part
-# Result: AC 
+# Result: AC
 
 class Solution:
     def canCompleteCircuit(self, gas, cost):
@@ -80,10 +80,39 @@ class Solution:
         :rtype: int
         """
         gap = [gas[i] - cost[i] for i in range(len(gas))]
-        for i in range(1, len(gap)): 
+        for i in range(1, len(gap)):
             gap[i] += gap[i - 1]
         if gap[-1] < 0: return -1
-        if gap.index(min(gap)) < len(gap) - 1: 
+        if gap.index(min(gap)) < len(gap) - 1:
             return gap.index(min(gap)) + 1
-        else: 
+        else:
             return 0
+
+
+"""
+2019-01-26 redo
+"""
+
+class Solution:
+    def canCompleteCircuit(self, gas, cost):
+        """
+        :type gas: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        tank = 0
+        for i in range(len(gas)):
+            tank += gas[i] - cost[i]
+        if tank < 0:
+            return -1
+
+        start = 0
+        extra = 0
+        for i in range(len(gas)):
+            gain = gas[i] - cost[i]
+            if extra + gain < 0:
+                start = i + 1
+                extra = 0
+            else:
+                extra += gain
+        return start
